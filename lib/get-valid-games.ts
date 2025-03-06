@@ -1,3 +1,9 @@
+export type ValidPosition = {
+  id: string;
+  fen: string;
+  createdAt: string;
+};
+
 // https://lichess.org/api#tag/Games/operation/apiGamesUser
 export async function getValidPositions(beforeTimeStamp?: string) {
   console.log(
@@ -17,7 +23,7 @@ export async function getValidPositions(beforeTimeStamp?: string) {
   headers.append("Accept", "application/x-ndjson");
 
   // Parse response until we have 10 valid games
-  const validPositions: any[] = [];
+  const validPositions: ValidPosition[] = [];
   let nextBefore = beforeTimeStamp;
   let maxRefetches = 20;
 
@@ -35,22 +41,22 @@ export async function getValidPositions(beforeTimeStamp?: string) {
       .filter(Boolean)
       .map((row) => JSON.parse(row));
 
-    validPositions.push(...rowsChunk.filter((game) => game.status === "mate"));
+    validPositions.push(
+      ...rowsChunk
+        .filter((game) => game.status === "mate")
+        .map((game) => ({
+          id: game.id,
+          fen: game.lastFen,
+          createdAt: game.createdAt,
+        }))
+    );
     if (rowsChunk.length < 10) break;
 
     const lastGame = rowsChunk[rowsChunk.length - 1];
     nextBefore = lastGame.createdAt ?? undefined;
     maxRefetches -= 1;
   }
-  console.log(`INFO: foud ${validPositions.length} valid positions.`);
+  console.log(`INFO: found ${validPositions.length} valid positions.`);
 
-  console.log(
-    validPositions.map((pos) => ({
-      id: pos.id,
-      status: pos.status,
-      createdAt: pos.createdAt,
-    }))
-  );
-
-  return [];
+  return validPositions;
 }

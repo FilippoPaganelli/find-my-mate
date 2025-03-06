@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="." />
+    <title>Find My Mate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/chessboard-1.0.0.min.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="chessboard-1.0.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background-color: #f8f9fa;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+      }
+      #board {
+        width: 400px;
+        margin: 0 auto;
+      }
+      .spare-piece {
+        position: relative;
+        display: inline-block;
+        margin: 5px;
+        cursor: grab;
+      }
+      /* Target Chessboard.js spare pieces container */
+      .spare-pieces-7492f {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        padding-left: 0 !important;
+      }
+      /* Target the specific rows */
+      .spare-pieces-top-7492f,
+      .spare-pieces-bottom-7492f {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+      }
+      /* Target the squares in spare pieces area */
+      .spare-pieces-7492f > div {
+        display: inline-block;
+        margin: 5px;
+      }
+      @media (max-width: 500px) {
+        #board {
+          width: 320px;
+        }
+      }
+    </style>
+  </head>
+  <body class="flex flex-col items-center p-4">
+    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
+      Find My Mate
+    </h1>
+
+    <div class="bg-white p-4 rounded-lg shadow-md w-full max-w-md">
+      <!-- Position info -->
+      <div id="position-info" class="text-lg my-2 text-center"></div>
+
+      <!-- Hint text -->
+      <div
+        id="hint"
+        class="text-sm italic text-gray-600 mb-4 text-center hidden"
+      ></div>
+
+      <!-- Attempts counter -->
+      <div id="attempts" class="text-sm text-gray-600 mb-2 text-center">
+        Attempts: 0
+      </div>
+
+      <!-- Chessboard -->
+      <div id="board"></div>
+
+      <!-- Status message -->
+      <div id="status" class="text-xl font-bold my-4 min-h-8 text-center"></div>
+
+      <!-- Controls -->
+      <div class="flex justify-center space-x-4">
+        <button
+          id="new-button"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          New Challenge
+        </button>
+        <button
+          id="check-button"
+          class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Check Solution
+        </button>
+        <button
+          id="solve-button"
+          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded hidden"
+        >
+          Next Challenge
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-8 text-center text-gray-600 text-sm max-w-md">
+      <p>
+        Place the missing pieces to create checkmate. Drag pieces from the spare
+        pieces area to the board.
+      </p>
+    </div>
+
+    <!-- Client-side logic -->
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
