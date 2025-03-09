@@ -8,7 +8,7 @@ import {
 } from "./ui.ts";
 
 // State variables
-let currentChallengeId = null;
+let currentChallengeId: string | null = null;
 let attemptCount = 0;
 
 /**
@@ -80,7 +80,7 @@ export async function checkSolution() {
     updateStatusDisplay(result.message, result.correct);
 
     if (result.correct) {
-      document.getElementById("check-button").classList.add("hidden");
+      document.getElementById("check-button")?.classList.add("hidden");
     }
   } catch (error) {
     console.error("Error checking solution:", error);

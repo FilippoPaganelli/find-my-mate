@@ -1,5 +1,5 @@
 import { updateStatusDisplay } from "./ui.ts";
-import { Chess } from "../../../public/chess.js/esm/chess.mjs";
+import { Chess } from "../../../lib/chess.ts";
 
 // Shared state
 let board = null;
@@ -10,7 +10,7 @@ let lockedSquares = new Set();
 /**
  * Sets up the chessboard with event handlers for the challenge
  * @param {string} fen - FEN string for challenge position
- * @param {Array} removedPieces - Pieces that were removed
+ * @param {Array<T>} removedPieces - Pieces that were removed
  * @param {string} id - Challenge ID
  * @returns {Object} - The chess instance and board
  */
@@ -44,7 +44,7 @@ export function setupChallenge(fen, removedPieces, id) {
   }
 
   // Create the board with proper configuration
-  board = ChessBoard("board", {
+  board = window.Chessboard("board", {
     position: position,
     draggable: true,
     sparePieces: true,

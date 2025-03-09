@@ -1,7 +1,7 @@
 import { Chess, BLACK, WHITE, KING, Square, Piece } from "./chess.ts";
 import { ValidPosition } from "./get-valid-games.ts";
-import { checkSolution } from "../src/client/js/gameController.js";
-import { SQUARES } from "../public/chess.js/chess.js";
+import { checkSolution } from "../src/client/ts/gameController.ts";
+import { SQUARES } from "./chess.ts";
 
 const BLACK_KING: Piece = {
   color: BLACK,
