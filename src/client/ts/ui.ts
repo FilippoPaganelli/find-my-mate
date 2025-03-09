@@ -24,6 +24,9 @@ export function initUI(
   if (solveButton) {
     solveButton.addEventListener("click", onSolve);
   }
+  declare const chessboardjs = new (globalThis as any).Chessboard();
+
+  console.log("UI initialized");
 }
 
 /**

@@ -25,7 +25,7 @@ export async function getValidPositions(beforeTimeStamp?: string) {
   // Parse response until we have 10 valid games
   const validPositions: ValidPosition[] = [];
   let nextBefore = beforeTimeStamp;
-  let maxRefetches = 20;
+  let maxRefetches = 1;
 
   while (validPositions.length < 10 && maxRefetches > 0) {
     console.log(`INFO: getting some more before: ${nextBefore}...`);

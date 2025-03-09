@@ -5,9 +5,8 @@
     "dev": "deno task build && deno task start"
   },
   "imports": {
-    "oak": "https://deno.land/x/oak/mod.ts"
+    "oak": "https://deno.land/x/oak/mod.ts",
+    "*.js": "./*.ts"
   },
-  "compilerOptions": {
-    "lib": ["dom"]
-  }
+  "compilerOptions": { "allowJs": true, "checkJs": true, "lib": ["dom"] }
 }
